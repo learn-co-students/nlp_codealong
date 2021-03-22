@@ -24,42 +24,9 @@ data.keys()
 ```
 
 
-
-
-    dict_keys(['data', 'filenames', 'target_names', 'target', 'DESCR'])
-
-
-
-
 ```python
 data.target_names
 ```
-
-
-
-
-    ['alt.atheism',
-     'comp.graphics',
-     'comp.os.ms-windows.misc',
-     'comp.sys.ibm.pc.hardware',
-     'comp.sys.mac.hardware',
-     'comp.windows.x',
-     'misc.forsale',
-     'rec.autos',
-     'rec.motorcycles',
-     'rec.sport.baseball',
-     'rec.sport.hockey',
-     'sci.crypt',
-     'sci.electronics',
-     'sci.med',
-     'sci.space',
-     'soc.religion.christian',
-     'talk.politics.guns',
-     'talk.politics.mideast',
-     'talk.politics.misc',
-     'talk.religion.misc']
-
-
 
 <a id='eda'></a>
 
@@ -74,67 +41,9 @@ X.shape
 ```
 
 
-
-
-    (11314, 1)
-
-
-
-
 ```python
 X.head()
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>From: lerxst@wam.umd.edu (where's my thing)\nS...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>From: guykuo@carson.u.washington.edu (Guy Kuo)...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>From: twillis@ec.ecn.purdue.edu (Thomas E Will...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>From: jgreen@amber (Joe Green)\nSubject: Re: W...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>From: jcm@head-cfa.harvard.edu (Jonathan McDow...</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 What form do we want the above dataframe to take? What does a row represent? What does a column represent?
 
@@ -148,22 +57,12 @@ What form do we want the above dataframe to take? What does a row represent? Wha
 one_random_student(quanggang)
 ```
 
-    Jamie
-
-
 Let's take a look at one record.  What type of preprocessing steps should we take to isolate tokens of high semantic value?
 
 
 ```python
 X.iloc[3].values[0]
 ```
-
-
-
-
-    'From: jgreen@amber (Joe Green)\nSubject: Re: Weitek P9000 ?\nOrganization: Harris Computer Systems Division\nLines: 14\nDistribution: world\nNNTP-Posting-Host: amber.ssd.csd.harris.com\nX-Newsreader: TIN [version 1.1 PL9]\n\nRobert J.C. Kyanko (rob@rjck.UUCP) wrote:\n> abraxis@iastate.edu writes in article <abraxis.734340159@class1.iastate.edu>:\n> > Anyone know about the Weitek P9000 graphics chip?\n> As far as the low-level stuff goes, it looks pretty nice.  It\'s got this\n> quadrilateral fill command that requires just the four points.\n\nDo you have Weitek\'s address/phone number?  I\'d like to get some information\nabout this chip.\n\n--\nJoe Green\t\t\t\tHarris Corporation\njgreen@csd.harris.com\t\t\tComputer Systems Division\n"The only thing that really scares me is a person with no sense of humor."\n\t\t\t\t\t\t-- Jonathan Winters\n'
-
-
 
 Answer here
 
@@ -192,20 +91,6 @@ from nltk.tokenize import RegexpTokenizer
 
 rt = RegexpTokenizer()
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    <ipython-input-196-d80686d9cfac> in <module>
-          4 from nltk.tokenize import RegexpTokenizer
-          5 
-    ----> 6 rt = RegexpTokenizer()
-    
-
-    TypeError: __init__() missing 1 required positional argument: 'pattern'
-
 
 
 ```python
@@ -253,32 +138,6 @@ data['target_names']
 ```
 
 
-
-
-    ['alt.atheism',
-     'comp.graphics',
-     'comp.os.ms-windows.misc',
-     'comp.sys.ibm.pc.hardware',
-     'comp.sys.mac.hardware',
-     'comp.windows.x',
-     'misc.forsale',
-     'rec.autos',
-     'rec.motorcycles',
-     'rec.sport.baseball',
-     'rec.sport.hockey',
-     'sci.crypt',
-     'sci.electronics',
-     'sci.med',
-     'sci.space',
-     'soc.religion.christian',
-     'talk.politics.guns',
-     'talk.politics.mideast',
-     'talk.politics.misc',
-     'talk.religion.misc']
-
-
-
-
 ```python
 # Bar Chart Here (horizontal, preferably)
 ```
@@ -287,9 +146,6 @@ data['target_names']
 ```python
 one_random_student(quanggang)
 ```
-
-    Jamie
-
 
 ## Quick Model
 
@@ -307,24 +163,6 @@ We split our data in the same way, ideally with a hold out set.
 ```python
 X_train[0]
 ```
-
-
-
-
-    1513     From: DSHAL@vmd.cso.uiuc.edu\nSubject: Re: Cli...
-    6814     From: david@stat.com (David Dodell)\nSubject: ...
-    7846     From: mouse@thunder.mcrcim.mcgill.edu (der Mou...
-    2980     From: chen@citr.uq.oz.au (G. Chen)\nSubject: H...
-    6075     From: thor@surt.atd.ucar.edu (Richard E. Neitz...
-                                   ...                        
-    11284    Distribution: world\nFrom: elenay_creations@tc...
-    5191     From: jnielsen@magnus.acs.ohio-state.edu (John...
-    5390     From: keith@cco.caltech.edu (Keith Allan Schne...
-    860      From: jake@bony1.bony.com (Jake Livni)\nSubjec...
-    7270     From: smorris@venus.lerc.nasa.gov (Ron Morris ...
-    Name: 0, Length: 8485, dtype: object
-
-
 
 ## Count Vectorizor
 
@@ -344,9 +182,6 @@ cv = None
 ```python
 one_random_student(quanggang)
 ```
-
-    Jamie
-
 
 
 ```python
@@ -377,14 +212,6 @@ With our CountVectorizer, we apply the same principles of model validation as we
 ```python
 cv.fit_transform(X_train[0])
 ```
-
-
-
-
-    <8485x79190 sparse matrix of type '<class 'numpy.int64'>'
-    	with 981634 stored elements in Compressed Sparse Row format>
-
-
 
 ### DataFrame from sparse and get feature names
 
@@ -430,9 +257,6 @@ We will apply a CountVectorizor and then a multinomial naive bayes classifier.
 one_random_student(quanggang)
 ```
 
-    Christos
-
-
 Now that we have a funcitonal pipeline, we have the framework to easily test out new parameters and models. Try n-grams, min_df/max_df, tfidf vectorizers, better token patterns.  Try Random Forests, XGBoost, and SVM's. The world is your oyster.
 
 ![MrBean_oysters](https://media.giphy.com/media/KZepR2JrdDbI0NYVMs/giphy.gif)
@@ -442,23 +266,6 @@ Now that we have a funcitonal pipeline, we have the framework to easily test out
 # Of course, when we are finished tuning our model, we fit on the entire training set, and score on the test.
 fsm_pipe.fit(X_train[0], y_train)
 ```
-
-
-
-
-    Pipeline(steps=[('countvectorizer',
-                     CountVectorizer(stop_words=['i', 'me', 'my', 'myself', 'we',
-                                                 'our', 'ours', 'ourselves', 'you',
-                                                 "you're", "you've", "you'll",
-                                                 "you'd", 'your', 'yours',
-                                                 'yourself', 'yourselves', 'he',
-                                                 'him', 'his', 'himself', 'she',
-                                                 "she's", 'her', 'hers', 'herself',
-                                                 'it', "it's", 'its', 'itself', ...],
-                                     token_pattern='[a-zA-Z]+')),
-                    ('multinomialnb', MultinomialNB())])
-
-
 
 
 ```python
@@ -471,14 +278,3 @@ from sklearn.metrics import plot_confusion_matrix
 
 plot_confusion_matrix(fsm_pipe,X_test[0], y_test)
 ```
-
-
-
-
-    <sklearn.metrics._plot.confusion_matrix.ConfusionMatrixDisplay at 0x1ae449fd0>
-
-
-
-
-![png](index_files/index_57_1.png)
-
